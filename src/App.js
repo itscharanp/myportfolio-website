@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Projects from './Projects';
+import SocialProfiles from './SocialProfiles';
+import profile from './assets/profilech.png'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+
+    state = {displayBio : false};
+
+
+    toggle = () =>{
+        this.setState({displayBio : !this.state.displayBio });
+    }
+
+    render()
+    {
+            return(
+
+            <div>
+             <img src={profile} alt='profile'  className = 'profile'/> 
+            <h1> My name is Charan. Im a Software Engineer </h1>
+            <p>Im always looking forward to work on meaningful projects </p>
+
+            {
+
+            this.state.displayBio ? (
+            <div>
+            <p>I Live in Hyderabad. </p> 
+            <p>My favorite Languages are JS,Java </p>
+            <p>Besides coding, I love music and biryani</p>  
+            <button onClick={this.toggle}> Show Less </button> 
+            </div>) : (
+                  <div> 
+                    <button onClick = {this.toggle} >Read more</button>     
+                  </div>  
+            )
+
+            }
+             <hr/>
+             <Projects/>
+             <hr/>
+             <SocialProfiles /> 
+
+
+            </div>
+
+
+            )
+    }
 }
-
 export default App;
